@@ -1,0 +1,1 @@
+This ZIP contains the fixed app/securitisation_risk_app.py. Extract the ZIP and run .\run_app_windows.bat from the extracted folder. Do not run the older folder, or the badge/health/recommendations will not appear.

@@ -1,0 +1,55 @@
+
+Total Current Balance = SUM(auto_loan_securitisation_data[CurrentBalance])
+
+Total ECL = SUM(auto_loan_securitisation_data[ECL_Provision])
+
+ECL Rate = DIVIDE([Total ECL], SUM(auto_loan_securitisation_data[EAD]))
+
+Average PD = AVERAGE(auto_loan_securitisation_data[PD_Estimate])
+
+Average LGD = AVERAGE(auto_loan_securitisation_data[LGD_Estimate])
+
+DPD30+ Balance =
+CALCULATE(
+    SUM(dpd_snapshot_history[CurrentBalance]),
+    dpd_snapshot_history[DPD_Days] >= 30
+)
+
+DPD30+ Rate =
+DIVIDE([DPD30+ Balance], SUM(dpd_snapshot_history[CurrentBalance]))
+
+DPD60+ Balance =
+CALCULATE(
+    SUM(dpd_snapshot_history[CurrentBalance]),
+    dpd_snapshot_history[DPD_Days] >= 60
+)
+
+DPD90+ Balance =
+CALCULATE(
+    SUM(dpd_snapshot_history[CurrentBalance]),
+    dpd_snapshot_history[DPD_Days] >= 90
+)
+
+Collection Efficiency =
+AVERAGE(dynamic_loss_monthly[CollectionEfficiency])
+
+Monthly Default Rate =
+AVERAGE(dynamic_loss_monthly[MonthlyDefaultRate])
+
+Monthly Net Loss Rate =
+AVERAGE(dynamic_loss_monthly[MonthlyNetLossRate])
+
+Risk Score =
+VAR DPDScore = MIN([DPD30+ Rate] * 1000, 25)
+VAR ECLScore = MIN([ECL Rate] * 500, 25)
+VAR PDScore = MIN([Average PD] * 500, 20)
+VAR LossScore = MIN([Monthly Net Loss Rate] * 2500, 15)
+RETURN ROUND(DPDScore + ECLScore + PDScore + LossScore, 0)
+
+Risk Band =
+SWITCH(
+    TRUE(),
+    [Risk Score] < 40, "LOW RISK",
+    [Risk Score] < 70, "MEDIUM RISK",
+    "HIGH RISK"
+)

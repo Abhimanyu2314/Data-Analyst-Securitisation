@@ -1,0 +1,36 @@
+{
+  "Portfolio": {
+    "Loan_Count": 500,
+    "Current_Balance": 317785202.14,
+    "EAD": 326164171.9,
+    "ECL_Provision": 11662952.899999999,
+    "ECL_Rate": 0.03575792163823497,
+    "Default_Count": 9,
+    "Average_PD": 0.0817878,
+    "Average_LGD": 0.503384,
+    "Average_CIBIL": 739.238,
+    "Average_LTV": 0.5690026
+  },
+  "DPD": {
+    "Latest_Snapshot_Date": "2024-10-30",
+    "DPD30_Balance": 51897367.1,
+    "DPD60_Balance": 37655968.91,
+    "DPD90_Balance": 20883645.57,
+    "DPD30_Rate": 0.14357347634799475,
+    "DPD60_Rate": 0.10417481008705566,
+    "DPD90_Rate": 0.05777436815873267
+  },
+  "Monthly_Performance": {
+    "Average_Collection_Efficiency": 1.2912000000000001,
+    "Average_Monthly_Default_Rate": 0.003011916666666666,
+    "Average_Monthly_Net_Loss_Rate": 0.0012488333333333333,
+    "Latest_EOP_Balance": 470149504.89
+  },
+  "Vintage": {
+    "Worst_Vintage": "2021-Q2",
+    "Worst_Vintage_Cumulative_Net_Loss_Rate": 0.016704
+  },
+  "Risk_Score": 66,
+  "Risk_Band": "MEDIUM RISK",
+  "AI_Interpretation": "The securitisation portfolio contains 500 auto loans with current balance INR 317,785,202. Total ECL provision is INR 11,662,953, implying an ECL rate of 3.58%. Latest DPD30+ balance rate is 14.36%, DPD60+ is 10.42%, and DPD90+ is 5.78%. Average collection efficiency is 1.29. The worst vintage is 2021-Q2 with peak cumulative net loss rate of 1.67%. The AI risk score is 66/100, classified as MEDIUM RISK."
+}

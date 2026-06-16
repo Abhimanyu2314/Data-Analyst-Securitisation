@@ -1,0 +1,23 @@
+BOND RISK LAB - FINAL SMOOTH SUBMISSION VERSION
+
+1) Install dependencies:
+   pip install -r requirements.txt
+
+2) Run the app:
+   python -m streamlit run app.py
+
+3) Use these folders for submission:
+   app/      -> Streamlit dashboard
+   src/      -> Quant engine
+   data/     -> Bond portfolio data
+   powerbi/  -> DAX measures
+   r/        -> R implementation
+   excel/    -> Excel/VBA implementation
+   docs/     -> PDF documentation structure and notes
+   outputs/  -> generated summary outputs
+
+4) Main PDF structure:
+   docs/Bond_Risk_Lab_Submission_Documentation_Structure.pdf
+
+5) Smoothness fix applied:
+   The app now uses single-section rendering instead of rendering all tabs together. This makes the Bond Risk Game selection faster and smoother because Monte Carlo, ML, and charts are loaded only when their section is selected.

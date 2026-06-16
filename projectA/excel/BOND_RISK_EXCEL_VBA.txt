@@ -1,0 +1,12 @@
+Function BondPrice(Face, Coupon, YTM, Years, Optional Freq = 2) As Double
+    Dim c As Double, n As Integer, r As Double, t As Integer
+    c = Face * Coupon / Freq
+    n = Years * Freq
+    r = YTM / Freq
+    For t = 1 To n
+        If t < n Then BondPrice = BondPrice + c / (1 + r) ^ t Else BondPrice = BondPrice + (c + Face) / (1 + r) ^ t
+    Next t
+End Function
+Function DV01(ModDur, Price) As Double
+    DV01 = ModDur * Price / 10000
+End Function

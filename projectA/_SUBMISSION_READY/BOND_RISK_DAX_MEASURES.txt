@@ -1,0 +1,12 @@
+Total Market Value = SUM(Bonds[MarketValue_INR])
+Portfolio Modified Duration = SUMX(Bonds, Bonds[ModifiedDuration] * DIVIDE(Bonds[MarketValue_INR], [Total Market Value]))
+Portfolio Convexity = SUMX(Bonds, Bonds[Convexity] * DIVIDE(Bonds[MarketValue_INR], [Total Market Value]))
+Portfolio DV01 = SUMX(Bonds, Bonds[DV01_Per100Face] * Bonds[Quantity] / 100)
+Price Impact =
+VAR dy = SELECTEDVALUE('Yield Shock'[bps], 0) / 10000
+VAR DurEff = -[Portfolio Modified Duration] * dy * [Total Market Value]
+VAR ConvEff = 0.5 * [Portfolio Convexity] * dy * dy * [Total Market Value]
+RETURN DurEff + ConvEff
+VaR 95% = PERCENTILEX.INC(MCScenarios, MCScenarios[PnL_INR], 0.05)
+CVaR 95% = AVERAGEX(FILTER(MCScenarios, MCScenarios[PnL_INR] <= [VaR 95%]), MCScenarios[PnL_INR])
+KRD by Bucket = SUMX(FILTER(Bonds, Bonds[TenorBucket]=SELECTEDVALUE(DimTenor[TenorBucket])), Bonds[ModifiedDuration] * DIVIDE(Bonds[MarketValue_INR], [Total Market Value]))
